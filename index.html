@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Calculatrice de moyenne scolaire Maroc (3ème année)" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+    rel="stylesheet">
+  <title>Calculatrice Moyenne</title>
+</head>
+
+<body>
+  <header>
+    <h1>Mes Notes</h1>
+    <div class="header-controls">
+      <div class="user-greeting" id="userGreeting"></div>
+      <div class="settings-container">
+        <button id="settingsToggle" class="icon-btn" aria-label="Paramètres">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
+            <path
+              d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-1 13.5l103 78-110 190-119-50q-11 8-23 15t-24 12l-16 128H370Zm112-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Z" />
+          </svg>
+        </button>
+        <div class="settings-menu" id="settingsMenu">
+          <div class="settings-item">
+            <span>Mode Nuit</span>
+            <button id="themeToggle" class="theme-toggle-btn" aria-label="Changer de thème">
+              <div class="toggle-thumb"></div>
+            </button>
+          </div>
+          <div class="settings-item">
+            <span>Couleur</span>
+            <div class="mini-color-picker" id="miniColorPicker"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="subjects-grid" id="subjectsGrid">
+      <!-- Subjects will be injected here via JS -->
+    </div>
+  </main>
+
+  <div class="summary-bar">
+    <div>
+      <div class="general-avg-label">Moyenne Générale</div>
+      <div class="general-avg-value" id="generalAverage">--/20</div>
+    </div>
+    <button class="reset-btn" id="resetBtn">Tout réinitialiser</button>
+  </div>
+
+  <!-- Welcome Modal -->
+  <div class="modal-overlay" id="welcomeModal">
+    <div class="modal">
+      <h2>Bienvenue !</h2>
+      <p>Commençons par personnaliser ton expérience.</p>
+
+      <div class="form-group">
+        <label for="userName">Ton prénom</label>
+        <input type="text" id="userName" class="text-input" placeholder="Ex: Karim" autocomplete="given-name">
+      </div>
+
+      <div class="form-group">
+        <label>Choisis ta couleur préférée</label>
+        <div class="color-options" id="colorOptions">
+          <!-- Color options will be generated -->
+        </div>
+      </div>
+
+      <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
+        <label for="modalThemeToggle" style="margin-bottom: 0;">Mode Sombre</label>
+        <button id="modalThemeToggle" class="theme-toggle-btn" aria-label="Activer le mode sombre">
+          <div class="toggle-thumb"></div>
+        </button>
+      </div>
+
+      <button class="btn-primary" id="startBtn">C'est parti !</button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
