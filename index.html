@@ -11,11 +11,18 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
     rel="stylesheet">
   <title>Calculatrice Moyenne</title>
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </head>
 
 <body>
   <header>
-    <h1>Mes Notes</h1>
+    <div class="brand-container">
+      <svg class="app-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 20V5l7 9 7-10" />
+      </svg>
+      <h1>Mes Notes</h1>
+    </div>
     <div class="header-controls">
       <div class="user-greeting" id="userGreeting"></div>
       <div class="settings-container">
@@ -26,6 +33,14 @@
           </svg>
         </button>
         <div class="settings-menu" id="settingsMenu">
+          <div class="settings-item">
+            <span>Language</span>
+            <div class="mini-lang-picker">
+              <button class="mini-lang-btn" data-lang="en">🇬🇧</button>
+              <button class="mini-lang-btn" data-lang="fr">🇫🇷</button>
+              <button class="mini-lang-btn" data-lang="ar">🇸🇦</button>
+            </div>
+          </div>
           <div class="settings-item">
             <span>Mode Nuit</span>
             <button id="themeToggle" class="theme-toggle-btn" aria-label="Changer de thème">
@@ -61,26 +76,63 @@
       <h2>Bienvenue !</h2>
       <p>Commençons par personnaliser ton expérience.</p>
 
-      <div class="form-group">
-        <label for="userName">Ton prénom</label>
-        <input type="text" id="userName" class="text-input" placeholder="Ex: Karim" autocomplete="given-name">
-      </div>
-
-      <div class="form-group">
-        <label>Choisis ta couleur préférée</label>
-        <div class="color-options" id="colorOptions">
-          <!-- Color options will be generated -->
+      <div class="step-container" data-step="1">
+        <div class="language-selection">
+          <button class="lang-card" data-lang="en">
+            <span class="flag">🇬🇧</span>
+            <span class="lang-name">English</span>
+          </button>
+          <button class="lang-card" data-lang="fr">
+            <span class="flag">🇫🇷</span>
+            <span class="lang-name">Français</span>
+          </button>
+          <button class="lang-card" data-lang="ar">
+            <span class="flag">🇸🇦</span>
+            <span class="lang-name">العربية</span>
+          </button>
         </div>
       </div>
 
-      <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
-        <label for="modalThemeToggle" style="margin-bottom: 0;">Mode Sombre</label>
-        <button id="modalThemeToggle" class="theme-toggle-btn" aria-label="Activer le mode sombre">
-          <div class="toggle-thumb"></div>
-        </button>
+      <div class="step-container hidden" data-step="2">
+        <div class="form-group">
+          <label for="userName">Ton prénom</label>
+          <input type="text" id="userName" class="text-input" placeholder="Ex: Karim" autocomplete="given-name">
+        </div>
+
+        <div class="form-group">
+          <label>Choisis ta couleur préférée</label>
+          <div class="color-options" id="colorOptions">
+            <!-- Color options will be generated -->
+          </div>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
+          <label for="modalThemeToggle" style="margin-bottom: 0;">Mode Sombre</label>
+          <button id="modalThemeToggle" class="theme-toggle-btn" aria-label="Activer le mode sombre">
+            <div class="toggle-thumb"></div>
+          </button>
+        </div>
+
+        <button class="btn-primary" id="startBtn">C'est parti !</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret Modal -->
+  <div class="modal-overlay" id="secretModal">
+    <div class="modal">
+
+
+      <div class="form-group">
+        <label for="secretPass">Mot de passe</label>
+        <input type="password" id="secretPass" class="text-input" placeholder="***" autocomplete="off">
       </div>
 
-      <button class="btn-primary" id="startBtn">C'est parti !</button>
+      <div style="display: flex; gap: 1rem;">
+        <button class="reset-btn" id="cancelSecretBtn"
+          style="flex: 1; border-color: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface);">Annuler</button>
+        <button class="btn-primary" id="confirmSecretBtn" style="flex: 1;">Valider</button>
+      </div>
     </div>
   </div>
 
