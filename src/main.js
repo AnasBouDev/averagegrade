@@ -4,6 +4,7 @@ const TRANSLATIONS = {
   en: {
     appTitle: 'My Grades',
     greeting: 'Hello',
+    language: 'Language',
     darkMode: 'Dark Mode',
     color: 'Color',
     generalAverage: 'General Average',
@@ -34,6 +35,7 @@ const TRANSLATIONS = {
   fr: {
     appTitle: 'Mes Notes',
     greeting: 'Bonjour',
+    language: 'Langue',
     darkMode: 'Mode Nuit',
     color: 'Couleur',
     generalAverage: 'Moyenne Générale',
@@ -64,6 +66,7 @@ const TRANSLATIONS = {
   ar: {
     appTitle: 'نقاطي',
     greeting: 'مرحباً',
+    language: 'اللغة',
     darkMode: 'الوضع الليلي',
     color: 'لون',
     generalAverage: 'المعدل العام',
@@ -250,9 +253,11 @@ function updateLanguage() {
     document.getElementById('userGreeting').textContent = `${t.greeting}, ${state.userName}`;
   }
 
+
   // Settings
-  document.querySelector('.settings-item span').textContent = t.darkMode; // First span is Dark Mode
-  document.querySelectorAll('.settings-item span')[1].textContent = t.color; // Second is Color
+  document.getElementById('settingLabelLanguage').textContent = t.language;
+  document.getElementById('settingLabelTheme').textContent = t.darkMode;
+  document.getElementById('settingLabelColor').textContent = t.color;
 
   // Footer
   document.querySelector('.general-avg-label').textContent = t.generalAverage;
