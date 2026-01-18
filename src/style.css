@@ -250,8 +250,8 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 6rem;
-  /* Space for footer */
+  /* Space for footer and safe area */
+  margin-bottom: calc(8rem + env(safe-area-inset-bottom));
 }
 
 .subject-card {
@@ -289,6 +289,100 @@ main {
   background-color: var(--md-sys-color-primary-container);
   padding: 0.25rem 0.75rem;
   border-radius: var(--md-sys-shape-corner-full);
+  min-width: 60px;
+  text-align: center;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  opacity: 0.5;
+}
+
+.delete-btn:hover {
+  background-color: #fee2e2;
+  color: #ef4444;
+  opacity: 1;
+}
+
+[data-theme="dark"] .delete-btn:hover {
+  background-color: #450a0a;
+  color: #f87171;
+}
+
+.coeff-control {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: var(--md-sys-color-surface-variant);
+  opacity: 0.9;
+  border-radius: 8px;
+}
+
+.coeff-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 4px;
+  background: var(--md-sys-color-on-surface-variant);
+  border-radius: 2px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.coeff-slider:hover {
+  opacity: 1;
+}
+
+.coeff-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--md-sys-color-primary);
+  cursor: pointer;
+  border: 2px solid var(--md-sys-color-surface);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s;
+}
+
+.coeff-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.coeff-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--md-sys-color-primary);
+  cursor: pointer;
+  border: 2px solid var(--md-sys-color-surface);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s;
+}
+
+.coeff-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.coeff-value {
+  font-family: var(--font-family-display);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--md-sys-color-on-surface-variant);
+  min-width: 32px;
 }
 
 .grades-inputs {
@@ -352,6 +446,10 @@ input[type=number] {
   /* Center on large screens if desired, or keep full width */
   width: 100%;
   z-index: 20;
+  /* Mobile optimization */
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
 .general-avg-label {
@@ -552,6 +650,28 @@ input[type=number] {
   }
 }
 
+/* Extra Small Screens (e.g. iPhone SE, Fold) */
+@media (max-width: 380px) {
+  .summary-bar {
+    padding: 0.75rem 1rem;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .general-avg-value {
+    font-size: 1.5rem;
+  }
+
+  .fab-mini {
+    width: 40px;
+    height: 40px;
+  }
+
+  .reset-btn {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
 /* Language Selection */
 .language-selection {
   display: flex;
@@ -668,6 +788,98 @@ input[type=number] {
 
 .slide-up {
   animation: slideUp 0.4s ease-out forwards;
+}
+
+.fade-out-left {
+  animation: fadeOutLeft 0.3s ease-out forwards;
+}
+
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+.scale-up {
+  animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* FAB in Summary Bar */
+.summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fab-mini {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  box-shadow: var(--md-sys-elevation-1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fab-mini:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.fab-mini:active {
+  transform: translateY(0);
+}
+
+.fab-mini svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Old FAB removed */
+
+/* RTL specifics for new elements */
+[dir="rtl"] .delete-btn {
+  margin-right: auto;
+  /* Push to left in flex container if needed, but flex handling below addresses it */
+}
+
+[dir="rtl"] .fade-out-left {
+  animation-name: fadeOutRight;
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
 }
 
 @media (max-width: 600px) {

@@ -54,6 +54,13 @@
             <span id="settingLabelColor">Couleur</span>
             <div class="mini-color-picker" id="miniColorPicker"></div>
           </div>
+          <div class="settings-item"
+            style="border-top: 1px solid var(--md-sys-color-surface-variant); padding-top: 1rem; margin-top: 0.5rem;">
+            <button id="restoreDefaultsBtn" class="reset-btn"
+              style="width: 100%; border: none; text-align: center; padding: 0.5rem; color: #ef4444; font-size: 0.9rem; background: rgba(255, 0, 0, 0.05);">
+              Restaurer les défauts
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -70,7 +77,15 @@
       <div class="general-avg-label">Moyenne Générale</div>
       <div class="general-avg-value" id="generalAverage">--/20</div>
     </div>
-    <button class="reset-btn" id="resetBtn">Tout réinitialiser</button>
+    <div class="summary-actions">
+      <button class="fab-mini" id="addSubjectBtn" aria-label="Ajouter une matière">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12h14" />
+        </svg>
+      </button>
+      <button class="reset-btn" id="resetBtn">Tout réinitialiser</button>
+    </div>
   </div>
 
   <!-- Welcome Modal -->
@@ -121,20 +136,64 @@
     </div>
   </div>
 
+  <!-- Add Subject Modal -->
+  <div class="modal-overlay" id="addSubjectModal">
+    <div class="modal">
+      <h2 id="addSubjectTitle">Ajouter une matière</h2>
+      <div class="form-group">
+        <label for="newSubjectName" id="labelSubjectName">Nom de la matière</label>
+        <input type="text" id="newSubjectName" class="text-input" placeholder="Ex: Philosophie">
+      </div>
+      <div class="form-group">
+        <label for="newSubjectGradeCount" id="labelSubjectGradeCount">Nombre de notes: 4</label>
+        <input type="range" id="newSubjectGradeCount" class="coeff-slider" min="1" max="8" step="1" value="4">
+      </div>
+      <div class="form-group">
+        <label for="newSubjectCoeff" id="labelSubjectCoeff">Coefficient: <span
+            id="newSubjectCoeffValue">1</span></label>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <input type="range" id="newSubjectCoeff" class="coeff-slider" min="1" max="10" step="0.5" value="1">
+        </div>
+        <div
+          style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant); margin-top: 0.5rem;">
+          <span>1</span><span>10</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 1rem;">
+        <button class="reset-btn" id="cancelAddSubjectBtn"
+          style="flex: 1; border-color: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface);">Annuler</button>
+        <button class="btn-primary" id="confirmAddSubjectBtn" style="flex: 1;">Ajouter</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Secret Modal -->
   <div class="modal-overlay" id="secretModal">
     <div class="modal">
-
-
+      <h2 id="secretTitle">Zone Secrète 🔒</h2>
+      <p id="secretDesc">Entrez le mot de passe pour accéder au contenu caché.</p>
       <div class="form-group">
-        <label for="secretPass">Mot de passe</label>
+        <label for="secretPass" id="labelSecretPass">Mot de passe</label>
         <input type="password" id="secretPass" class="text-input" placeholder="***" autocomplete="off">
       </div>
-
       <div style="display: flex; gap: 1rem;">
         <button class="reset-btn" id="cancelSecretBtn"
           style="flex: 1; border-color: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface);">Annuler</button>
         <button class="btn-primary" id="confirmSecretBtn" style="flex: 1;">Valider</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal">
+      <h2 id="confirmTitle">Confirmation</h2>
+      <p id="confirmMessage">Êtes-vous sûr ?</p>
+      <div style="display: flex; gap: 1rem;">
+        <button class="reset-btn" id="btnCancelConfirm"
+          style="flex: 1; border-color: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface);">Annuler</button>
+        <button class="btn-primary" id="btnConfirmAction"
+          style="flex: 1; background-color: #ef4444; color: white;">Confirmer</button>
       </div>
     </div>
   </div>
